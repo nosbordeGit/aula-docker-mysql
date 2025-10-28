@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<title>Instalando o Docker no WSL - FATEC Campinas</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8"> 
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+	<script async type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	
+</head>
+
+<body>
+
+	<div class="container">
+
+		<div class="div-content">
+<h1>Instalando o Docker no WSL - Prof. Ed Robson</h1>
+<h3>Fatec Campinas</h3>
+<p>Desenvolimento WEB e Laboratório de Banco de Dados</p>
+<hr />
+<span class="index-title">Índice</span>
+<ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#sobre-o-docker-rodando-no-wsl">Sobre o Docker rodando no WSL</a></li>
+<li class="toc-entry toc-h2"><a href="#instalação-do-wsl2">Instalação do WSL2</a></li>
+<li class="toc-entry toc-h2"><a href="#instalação-do-ubuntu">Instalação do Ubuntu</a></li>
+<li class="toc-entry toc-h2"><a href="#instalação-do-docker-no-wsl">Instalação do Docker no WSL</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#abra-um-prompt-do-wsl">Abra um prompt do WSL</a></li>
+<li class="toc-entry toc-h3"><a href="#ubuntu-2010">Ubuntu 20.10+</a></li>
+<li class="toc-entry toc-h3"><a href="#utilizar-iptables-legadas">Utilizar iptables legadas</a></li>
+<li class="toc-entry toc-h3"><a href="#instalar-o-docker">Instalar o Docker</a></li>
+<li class="toc-entry toc-h3"><a href="#adicionar-alias">Adicionar Alias</a></li>
+<li class="toc-entry toc-h3"><a href="#adicionar-permissões">Adicionar permissões</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#executando">Executando</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#iniciar-o-docker">Iniciar o Docker</a></li>
+</ul>
+</li>
+</ul>
+
+<hr />
+
+<h2 id="sobre-o-docker-rodando-no-wsl">Sobre o Docker rodando no WSL</h2>
+
+<p>É possível rodar o Docker dentro do WSL do Windows, sem precisar instalar o Docker Desktop. Abaixo os detalhes da instalação.</p>
+
+<p>Documentação oficial:
+<a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank" rel="nofollow">https://docs.docker.com/engine/install/ubuntu/</a>
+<a href="https://docs.docker.com/engine/install/linux-postinstall/" target="_blank" rel="nofollow">https://docs.docker.com/engine/install/linux-postinstall/</a></p>
+<hr />
+
+<h2 id="instalação-do-wsl2">Instalação do WSL2</h2>
+
+<p>Containers normalmente rodam no Linux e para rodar esses containers Linux dentro do Windows uma ótima opção é instalar o WSL (Windows Subsystem for Linux).
+O WSL Permite instalar uma distribuição do Linux (por padrão a distribuição Ubuntu) dentro do Windows</p>
+
+<p>Para verificar se você já tem o WSL2 instalado, abra um Prompt do PowerShell e execute:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wsl -l -v
+</code></pre></div></div>
+
+<p>Para Instalar o WLS2 via terminal</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wsl --install
+</code></pre></div></div>
+<hr />
+
+<h2 id="instalação-do-ubuntu">Instalação do Ubuntu via terminal</h2>
+
+<p>Para instalar o Ubuntu siga as instruções aqui:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wsl --install -d Ubuntu
+</code></pre></div></div>
+
+<p>Para verificar a versao do Ubuntu instalada</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /etc/os-release
+</code></pre></div></div>
+
+<p>Para remover linux wsl apagando registros</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wsl --unregister "distribuição para remover"
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="instalação-do-docker-no-wsl">Instalação do Docker no WSL</h2>
+
+<h3 id="abra-um-prompt-do-wsl">Abra um prompt do WSL</h3>
+
+<p>Iniciar / pesquise por “Ubuntu” / clique no ícone “Ubuntu”</p>
+
+<p>Utilizando esse terminal você pode executar comandos Linux, que serão executados na distribuição Linux instalada no WSL.</p>
+
+<p>Utilize esse terminal para executar os comandos abaixo.</p>
+
+<h3 id="ubuntu-2010">Ubuntu 20.10+</h3>
+
+<ul>
+  <li>Se você estiver rodando o Ubuntu em uma versão anterior ao Ubuntu 20.10, é necessário atualizar:</li>
+</ul>
+
+<p>Verificar a versão instalada:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /etc/os-release
+</code></pre></div></div>
+
+<p>Se for inferior a 20.10, atualizar o Ubuntu:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
+sudo apt dist-upgrade
+sudo apt install update-manager-core
+sudo apt autoremove
+sudo do-release-upgrade -d
+</code></pre></div></div>
+
+<p>Ao final do processo, vai ocorrer um shutdown do linux.
+Feche o terminal e então abra outro prompt do Ubuntu (Iniciar / pesquisar “Ubuntu”).</p>
+
+<h3 id="utilizar-iptables-legadas">Utilizar iptables legadas</h3>
+
+<p>Executar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt update
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install iptables
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo update-alternatives --config iptables
+
+</code></pre></div></div>
+<div class="alert alert-warning" role="alert">
+  Selecione  a opção “iptables-legacy” 
+</div>
+
+
+<h3 id="instalar-o-docker">Instalar o Docker</h3>
+
+<p>Remover versões antigas:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get remove docker docker-engine docker.io containerd runc
+</code></pre></div></div>
+
+<p>Se não tiver docker instalado, vai exibir: “Unable to locate package docker-engine”</p>
+
+<p>Instalar dependências:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade
+sudo apt-get install ca-certificates curl gnupg lsb-release
+sudo apt-get autoremove
+</code></pre></div></div>
+
+<p>Adicionar chave do repositório oficial do Docker:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre></div></div>
+
+<p>Instalar o Docker Engine</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+</code></pre></div></div>
+
+<p>Teste:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker --version
+docker compose version
+</code></pre></div></div>
+
+<h3 id="adicionar-alias">Adicionar Alias</h3>
+
+<ul>
+  <p>Alias para o comando “docker-compose” funcionar</p>
+</ul>
+
+<p>Abrir o arquivo</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nano ~/.bash_aliases
+</code></pre></div></div>
+
+<p>Adicionar a seguinte linha:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>alias docker-compose="docker compose"
+</code></pre></div></div>
+
+<p>Salvar o arquivo pressionando CTRL+X</p>
+<p>Tecle Y</p>
+<p>Tecle Enter</p>
+
+<p>Então, execute:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source ~/.bash_aliases
+</code></pre></div></div>
+
+<p>Para testar, executar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker-compose version
+</code></pre></div></div>
+
+<h3 id="adicionar-permissões">Adicionar permissões</h3>
+
+<p>Executar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo groupadd docker
+sudo usermod -aG docker $USER
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="executando">Executando</h2>
+
+<h3 id="iniciar-o-docker">Iniciar o Docker</h3>
+
+<p>Executar:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo dockerd
+</code></pre></div></div>
+
+<p>Se for iniciado com sucesso, será exibido:
+API listen on /mnt/wsl/shared-docker/docker.sock</p>
+
+<hr />
+	</div>
+</body>
+</html>
