@@ -1,3 +1,7 @@
+Teste docker 
+
+    docker run hello-world
+    
 Comandos básicos
 
     docker version: Exibe a versão do Docker.
@@ -36,33 +40,34 @@ Comandos avançados
 PARTE 1 — MySQL temporário
 
 1 - Puxar a imagem (opcional)
-docker pull mysql:8.0
+
+    docker pull mysql:8.0
 
 
 2 - Executar o MySQL em modo temporário
 
 # roda o MySQL em background e remove o container automaticamente ao parar (--rm)
-docker run --rm --name mysql-temp \
-  -e MYSQL_ROOT_PASSWORD=senha123 \
-  -p 3306:3306 \
-  -d mysql:8.0
+    docker run --rm --name mysql-temp \
+      -e MYSQL_ROOT_PASSWORD=senha123 \
+      -p 3306:3306 \
+      -d mysql:8.0
 
 3 - Conectar ao MySQL no container (para testar)
 
 # entrar no cliente mysql dentro do container
-docker exec -it mysql-temp mysql -u root -p
+    docker exec -it mysql-temp mysql -u root -p
 
 # Ou, se quiser usar o cliente do host (se tiver instalado):
 
-mysql -h 127.0.0.1 -P 3306 -u root -p
+    mysql -h 127.0.0.1 -P 3306 -u root -p
 
 4 - Teste Rapido vamos criar um banco de dados e uma tabela e inserir 2 registros 
 
-CREATE DATABASE palestra_test;
-USE palestra_test;
-CREATE TABLE t1 (id INT PRIMARY KEY AUTO_INCREMENT, nome VARCHAR(50));
-INSERT INTO t1 (nome) VALUES ('Ana Clara '), ('Cecilia');
-SELECT * FROM t1;
+    CREATE DATABASE palestra_test;
+    USE palestra_test;
+    CREATE TABLE t1 (id INT PRIMARY KEY AUTO_INCREMENT, nome VARCHAR(50));
+    INSERT INTO t1 (nome) VALUES ('Ana Clara '), ('Cecilia');
+    SELECT * FROM t1;
 
 
 
